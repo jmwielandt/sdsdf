@@ -4,21 +4,33 @@
 // then run npm install in the stackblitz terminal
 
 import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 const markdown = `
 <a href="http://www.example.com" target="_blank">www.example.com</a>
 
-# Pluto
-
-**Pluto** (minor-planet designation: *134340 Pluto*)
-is a
-[dwarf planet](https://en.wikipedia.org/wiki/Dwarf_planet)
-in the
-[Kuiper belt](https://en.wikipedia.org/wiki/Kuiper_belt).
+I need to put a table too...
+|a|b|
+|-|-|
+|1|2|
 `;
 
 function App() {
-  return <Markdown>{markdown}</Markdown>;
+  return <>
+  <h1>App 1</h1>
+  <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+    {markdown}
+  </Markdown>
+  <h1>App 2</h1>
+  <Markdown remarkPlugins={[remarkGfm]}>
+    {markdown}
+  </Markdown>
+  <h1>App 3</h1>
+  <Markdown rehypePlugins={[rehypeRaw]}>
+    {markdown}
+  </Markdown>
+  </>
 }
 
 export default App;

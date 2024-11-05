@@ -10,11 +10,14 @@ import rehypeRaw from 'rehype-raw';
 const markdown = `
 <a href="http://www.example.com" target="_blank">www.example.com</a>
 
+
 I need to put a table too...
 |a|b|
 |-|-|
 |1|2|
 `;
+
+const mdRawLink = `www.example.com`;
 
 function App() {
   return <>
@@ -29,6 +32,10 @@ function App() {
   <h1>App 3</h1>
   <Markdown rehypePlugins={[rehypeRaw]}>
     {markdown}
+  </Markdown>
+  <h1>Now with a raw link</h1>
+  <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+    {mdRawLink}
   </Markdown>
   </>
 }
